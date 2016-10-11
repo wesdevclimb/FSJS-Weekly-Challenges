@@ -1,14 +1,10 @@
 //create function
-//create function
-function evaluate(message)
-{
+function evaluate(message){
   //control and return statements
-  if (message === 'hello')
-  {
+  if (message === 'hello') {
     alert('Hello, world!');
   }
-  else if (message !== 'hello')
-  {
+  else if (message !== 'hello') {
     alert("Sorry. You didn't enter the desired response.");
   }
 }

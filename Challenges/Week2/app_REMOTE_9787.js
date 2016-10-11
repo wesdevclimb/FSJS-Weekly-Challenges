@@ -1,5 +1,4 @@
 //create function
-//create function
 function evaluate(message)
 {
   //control and return statements

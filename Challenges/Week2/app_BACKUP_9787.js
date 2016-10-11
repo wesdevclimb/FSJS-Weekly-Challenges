@@ -1,5 +1,12 @@
 //create function
-//create function
+<<<<<<< HEAD
+function evaluate(message){
+  //control and return statements
+  if (message === 'hello') {
+    alert('Hello, world!');
+  }
+  else if (message !== 'hello') {
+=======
 function evaluate(message)
 {
   //control and return statements
@@ -9,6 +16,7 @@ function evaluate(message)
   }
   else if (message !== 'hello')
   {
+>>>>>>> db61f94930728078f548f23f8563ced984d47c20
     alert("Sorry. You didn't enter the desired response.");
   }
 }
