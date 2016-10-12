@@ -17,17 +17,7 @@
  */
 
 var https = require("https");
-
-function printMessage(username, array){
-  //The printMessage() needs to iterate over each item in the array and log out the name of each repository
-  var message = username + " has " + array.length + " repos. \n";
-  array.forEach(function(arrayItem){
-    message += "* " + arrayItem.name + "\n";
-  });
-  console.log(message);
-}
-
-
+var printer = require("./printer");
 
 function getRepos(username){
   //Task 2: Configure options by creating a JavaScript object
@@ -48,14 +38,23 @@ function getRepos(username){
       body += chunk;
     });
     response.on('end', function(){
-      var repos = JSON.parse(body);
-      printMessage(username, repos);
+      //if() { try{} catch{} } else {} statement handles incorrect username errors
+      if(response.statusCode === 200){
+        try {
+          var repos = JSON.parse(body);
+          printer.printMessage(username, repos);
+        } catch(error) {
+          console.log(error.message);
+        }
+      }
+      else {
+        console.log("Sorry. No information could be found for " + username + ".");
+      }
     });
   });
   request.end();
 }
 
-//Should handle common errors
 
 //Task 1: Export getRepos() module
 module.exports.getRepos = getRepos;
