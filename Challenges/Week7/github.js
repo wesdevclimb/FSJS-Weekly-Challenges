@@ -17,9 +17,17 @@
  */
 
 var https = require("https");
-var printer = require("./printer");
 
-function getRepos(username){
+function printMessage(username, array, printMethod){
+  //The printMessage() needs to iterate over each item in the array and log out the name of each repository
+  var message = "\n" + username + " has " + array.length + " repos.\n";
+  array.forEach(function(arrayItem){
+    message += "\n* " + arrayItem.name;
+  });
+  printMethod(message);
+}
+
+function getRepos(username, printMethod){
   //Task 2: Configure options by creating a JavaScript object
   var options = {
     'hostname' : 'api.github.com',
@@ -42,7 +50,7 @@ function getRepos(username){
       if(response.statusCode === 200){
         try {
           var repos = JSON.parse(body);
-          printer.printMessage(username, repos);
+          printMessage(username, repos, printMethod);
         } catch(error) {
           console.log(error.message);
         }
@@ -54,6 +62,7 @@ function getRepos(username){
   });
   request.end();
 }
+
 
 
 //Task 1: Export getRepos() module
